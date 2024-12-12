@@ -1,0 +1,505 @@
+<html><head><base href="." />
+    <meta charset="UTF-8">
+    <title>Recicle Fácil - Sistema de Gerenciamento de Resíduos</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Arial', sans-serif;
+      }
+    
+      :root {
+        --primary-color: #2ecc71;
+        --secondary-color: #27ae60;
+        --background-light: #f5f6fa;
+        --text-dark: #2c3e50;
+      }
+    
+      body {
+        background-color: var(--background-light);
+      }
+    
+      .landing-page {
+        min-height: 100vh;
+        background-color: white;
+      }
+    
+      .landing-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      }
+    
+      .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+    
+      .logo-container svg {
+        width: 40px;
+        height: 40px;
+      }
+    
+      .logo-container h1 {
+        margin: 0;
+        color: var(--text-dark);
+        font-size: 1.5rem;
+      }
+    
+      .nav-btn {
+        width: auto;
+        padding: 0.5rem 1.5rem;
+        margin-left: 1rem;
+      }
+    
+      .hero-section {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+        text-align: center;
+      }
+    
+      .hero-content {
+        margin-bottom: 4rem;
+      }
+    
+      .hero-content h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: var(--text-dark);
+      }
+    
+      .hero-content p {
+        font-size: 1.2rem;
+        color: #666;
+        margin-bottom: 2rem;
+      }
+    
+      .cta-btn {
+        width: auto;
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+      }
+    
+      .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 4rem;
+      }
+    
+      .feature-card {
+        padding: 2rem;
+        background: #f8f9fa;
+        border-radius: 10px;
+        text-align: center;
+        transition: transform 0.3s;
+      }
+    
+      .feature-card:hover {
+        transform: translateY(-5px);
+      }
+    
+      .feature-icon {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 1rem;
+      }
+    
+      .feature-card h3 {
+        color: var(--text-dark);
+        margin-bottom: 0.5rem;
+      }
+    
+      .feature-card p {
+        color: #666;
+      }
+    
+      .login-container {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+      }
+    
+      .login-box, .register-box, .forgot-password-box {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        width: 90%;
+        max-width: 400px;
+      }
+    
+      .logo {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+    
+      .logo svg {
+        width: 80px;
+        height: 80px;
+      }
+    
+      h1 {
+        color: var(--text-dark);
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+    
+      .input-group {
+        margin-bottom: 1rem;
+      }
+    
+      .input-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--text-dark);
+      }
+    
+      .input-group input, .input-group select {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+      }
+    
+      .btn {
+        width: 100%;
+        padding: 1rem;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-bottom: 1rem;
+      }
+    
+      .btn:hover {
+        background-color: var(--secondary-color);
+      }
+    
+      .btn.secondary {
+        background-color: #95a5a6;
+      }
+    
+      .btn.secondary:hover {
+        background-color: #7f8c8d;
+      }
+    
+      .dashboard {
+        display: none;
+        padding: 2rem;
+      }
+    
+      .dashboard-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+    
+      .dashboard-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1rem;
+      }
+    
+      .card {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      }
+    
+      .notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 1rem;
+        background: var(--primary-color);
+        color: white;
+        border-radius: 5px;
+        display: none;
+      }
+    
+      .forgot-password {
+        text-align: center;
+        margin-top: 1rem;
+      }
+    
+      .forgot-password a {
+        color: var(--text-dark);
+        text-decoration: none;
+        font-size: 0.9rem;
+      }
+    
+      .forgot-password a:hover {
+        color: var(--primary-color);
+        text-decoration: underline;
+      }
+    
+      .forgot-password-box {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        width: 90%;
+        max-width: 400px;
+      }
+    
+      textarea {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+        resize: vertical;
+        min-height: 100px;
+      }
+    
+      #historicoCidadao {
+        margin-top: 1rem;
+      }
+    
+      #historicoCidadao .registro {
+        background: #f8f9fa;
+        padding: 1rem;
+        border-radius: 5px;
+        margin-bottom: 1rem;
+      }
+    
+      #historicoCidadao .registro:last-child {
+        margin-bottom: 0;
+      }
+    </style>
+    </head>
+    <body>
+      <div class="landing-page" id="landingPage">
+        <header class="landing-header">
+          <div class="logo-container">
+            <svg viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="45" fill="#2ecc71"/>
+              <path d="M30 50 L45 65 L70 35" stroke="white" stroke-width="8" fill="none"/>
+            </svg>
+            <h1>Recicle Fácil</h1>
+          </div>
+          <nav>
+            <a href="./login.html" class="btn btn-primary">Entrar</a>
+            <a href="./cadastro.html" class="btn btn-primary">Cadastrar</a>
+          </nav>
+        </header>
+        
+        <main class="hero-section">
+          <div class="hero-content">
+            <h1></h1>
+            <p></p>
+          </div>
+      
+      <script>
+        let dados = {
+          totalResiduos: 1500,
+          totalEmpresas: 45,
+          pontosColeta: [
+            {nome: "Ecoponto Central", endereco: "Rua Principal, 123"},
+            {nome: "Ecoponto Sul", endereco: "Av. Sul, 456"},
+            {nome: "Ecoponto Norte", endereco: "Rua Norte, 789"}
+          ],
+          historicoResiduos: [],
+          registrosCidadao: [],
+          users: []
+        };
+    
+        function showNotification(message) {
+          const notification = document.getElementById('notification');
+          notification.textContent = message;
+          notification.style.display = 'block';
+          setTimeout(() => {
+            notification.style.display = 'none';
+          }, 3000);
+        }
+    
+        function showLogin() {
+          document.getElementById('registerBox').style.display = 'none';
+          document.getElementById('loginBox').style.display = 'block';
+          document.getElementById('forgotPasswordBox').style.display = 'none';
+        }
+    
+        function showRegister() {
+          document.getElementById('registerBox').style.display = 'block';
+          document.getElementById('loginBox').style.display = 'none';
+          document.getElementById('forgotPasswordBox').style.display = 'none';
+        }
+    
+        function showForgotPassword() {
+          document.getElementById('loginBox').style.display = 'none';
+          document.getElementById('registerBox').style.display = 'none';
+          document.getElementById('forgotPasswordBox').style.display = 'block';
+        }
+    
+        function showLoginFromLanding() {
+          document.getElementById('landingPage').style.display = 'none';
+          document.getElementById('loginContainer').style.display = 'flex';
+          showLogin();
+        }
+    
+        function showRegisterFromLanding() {
+          document.getElementById('landingPage').style.display = 'none';
+          document.getElementById('loginContainer').style.display = 'flex';
+          showRegister();
+        }
+    
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+          e.preventDefault();
+          const password = document.getElementById('password').value;
+          const confirmPassword = document.getElementById('confirmPassword').value;
+          
+          if (password !== confirmPassword) {
+            showNotification('As senhas não coincidem!');
+            return;
+          }
+    
+          const newUser = {
+            fullName: document.getElementById('fullName').value,
+            username: document.getElementById('username').value,
+            gender: document.getElementById('gender').value,
+            userType: document.getElementById('userType').value,
+            email: document.getElementById('email').value,
+            password: password
+          };
+    
+          dados.users.push(newUser);
+          showNotification('Cadastro realizado com sucesso!');
+          this.reset();
+          showLogin();
+        });
+    
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+          e.preventDefault();
+          const email = document.getElementById('loginEmail').value;
+          const password = document.getElementById('loginPassword').value;
+    
+          const user = dados.users.find(u => u.email === email && u.password === password);
+          
+          if (!user) {
+            showNotification('Email ou senha inválidos!');
+            return;
+          }
+    
+          document.getElementById('loginContainer').style.display = 'none';          
+          if(user.userType === 'governo') {
+            document.getElementById('totalResiduos').textContent = dados.totalResiduos;
+            document.getElementById('totalEmpresas').textContent = dados.totalEmpresas;
+          } else if(user.userType === 'cidadao') {
+            const pontosHTML = dados.pontosColeta.map(ponto => 
+              <div><h3>${ponto.nome}</h3><p>${ponto.endereco}</p></div>
+            ).join('');
+            document.getElementById('pontosColeta').innerHTML = pontosHTML;
+          }
+          
+          showNotification('Login realizado com sucesso');
+        });
+    
+        document.getElementById('forgotPasswordForm').addEventListener('submit', function(e) {
+          e.preventDefault();
+          const email = document.getElementById('recoveryEmail').value;
+          
+          const userExists = dados.users.some(user => user.email === email);
+          
+          if (!userExists) {
+            showNotification('Email não encontrado no sistema!');
+            return;
+          }
+          
+          showNotification('Link de recuperação enviado para seu email!');
+          this.reset();
+          showLogin();
+        });
+    
+        document.getElementById('reportForm')?.addEventListener('submit', function(e) {
+          e.preventDefault();
+          showNotification('Denúncia enviada com sucesso');
+          this.reset();
+        });
+    
+        document.getElementById('cidadaoResiduoForm')?.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const novoRegistro = {
+            nome: document.getElementById('nomeResiduo').value,
+            tipo: document.getElementById('tipoResiduoCidadao').value,
+            classificacao: document.getElementById('classificacaoResiduo').value,
+            quantidade: document.getElementById('quantidadeResiduoCidadao').value,
+            mensagem: document.getElementById('mensagemResiduo').value,
+            data: new Date().toLocaleDateString()
+          };
+    
+          dados.registrosCidadao.push(novoRegistro);
+          atualizarHistoricoCidadao();
+          showNotification('Resíduo registrado com sucesso!');
+          this.reset();
+        });
+    
+        function atualizarHistoricoCidadao() {
+          const historico = document.getElementById('historicoCidadao');
+          const registrosHTML = dados.registrosCidadao.map(registro => `
+            <div class="registro">
+              <h3>${registro.nome}</h3>
+              <p><strong>Tipo:</strong> ${registro.tipo}</p>
+              <p><strong>Classificação:</strong> ${registro.classificacao}</p>
+              <p><strong>Quantidade:</strong> ${registro.quantidade} ${registro.tipo === 'solido' ? 'kg' : 'L'}</p>
+              ${registro.mensagem ? <p><strong>Mensagem:</strong> ${registro.mensagem}</p> : ''}
+              <p><strong>Data:</strong> ${registro.data}</p>
+            </div>
+          `).join('');
+          
+          historico.innerHTML = registrosHTML || '<p>Nenhum registro encontrado.</p>';
+        }
+    
+        document.getElementById('residuoForm')?.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const tipo = document.getElementById('tipoResiduo').value;
+          const quantidade = document.getElementById('quantidade').value;
+          
+          dados.historicoResiduos.push({
+            tipo,
+            quantidade,
+            data: new Date().toLocaleDateString()
+          });
+          
+          atualizarHistorico();
+          showNotification('Resíduo registrado com sucesso');
+          this.reset();
+        });
+    
+        function atualizarHistorico() {
+          const historicoHTML = dados.historicoResiduos.map(registro => 
+            `<div>
+              <p>Tipo: ${registro.tipo}</p>
+              <p>Quantidade: ${registro.quantidade} ${registro.tipo === 'solido' ? 'kg' : 'L'}</p>
+              <p>Data: ${registro.data}</p>
+                          </div>`
+          ).join('');
+          document.getElementById('historicoResiduos').innerHTML = historicoHTML;
+        }
+    
+        function gerarRelatorio() {
+          showNotification('Relatório gerado com sucesso');
+        }
+    
+        function logout() {
+          document.querySelectorAll('.dashboard').forEach(dash => dash.style.display = 'none');
+          document.getElementById('loginContainer').style.display = 'none';
+          document.getElementById('landingPage').style.display = 'block';
+          showNotification('Logout realizado ')    }

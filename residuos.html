@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recicle Facil - Cadastro de Resíduos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #c3f5d5, #8ed4b1);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .waste-form-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 1rem; /* Ajustado para ficar mais abaixo */
+            left: 1rem; /* Melhor alinhamento */
+            padding: 0.8rem 1.5rem;
+            background: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #27ae60;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        h1 {
+            color: #2ecc71;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #34495e;
+            font-weight: 500;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #2ecc71;
+            box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
+        }
+
+        .classification-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .classification-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .classification-item input[type="checkbox"] {
+            width: auto;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .btn-primary {
+            background-color: #2ecc71;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #27ae60;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .additional-info {
+            display: none;
+        }
+
+        .additional-info.show {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<class="waste-form-container">
+        <a href="./oi.html" class="back-button">Voltar</a></br></br>
+<body>
+    <div class="waste-form-container">
+        
+        <h1>Cadastro de Resíduos</h1>
+        <form id="waste-form">
+            <div class="form-section">
+                <div class="form-group">
+                    <label for="waste-name">Nome do Resíduo</label>
+                    <input type="text" id="waste-name" required placeholder="Ex: Embalagens de Papelão">
+                </div>
+                <div class="form-group">
+                    <label>Classificação</label>
+                    <div class="classification-grid">
+                        <div class="classification-item">
+                            <input type="checkbox" id="recyclable" name="classification">
+                            <label for="recyclable">Reciclável</label>
+                        </div>
+                        <div class="classification-item">
+                            <input type="checkbox" id="organic" name="classification">
+                            <label for="organic">Orgânico</label>
+                        </div>
+                        <div class="classification-item">
+                            <input type="checkbox" id="hazardous" name="classification">
+                            <label for="hazardous">Perigoso</label>
+                        </div>
+                        <div class="classification-item">
+                            <input type="checkbox" id="electronic" name="classification">
+                            <label for="electronic">Eletrônico</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="waste-type">Tipo de Resíduo</label>
+                    <select id="waste-type" required>
+                        <option value="">Selecione o tipo</option>
+                        <option value="plastic">Plástico</option>
+                        <option value="paper">Papel/Papelão</option>
+                        <option value="glass">Vidro</option>
+                        <option value="metal">Metal</option>
+                        <option value="organic">Orgânico</option>
+                        <option value="electronic">Eletrônico</option>
+                        <option value="other">Outro</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Cadastrar Resíduo</button>
+        </form>
+    </div>
+</body>
+</html>

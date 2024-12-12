@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base href="">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recicle Fácil - Dashboard</title>
+  <style>
+    /* Todo o estilo original */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    :root {
+      --primary-color: #2ecc71;
+      --secondary-color: #27ae60;
+      --background-color: #f5f6fa;
+      --text-color: #2c3e50;
+      --light-text: #7f8c8d;
+      --white: #ffffff;
+    }
+
+    body {
+      background-color: var(--background-color);
+    }
+
+    .dashboard-container {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      background: var(--white);
+      padding: 2rem;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      color: var(--primary-color);
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-decoration: none;
+      margin-bottom: 2rem;
+      display: block;
+    }
+
+    .nav-menu {
+      list-style: none;
+      padding: 0;
+    }
+
+    .nav-item {
+      margin-bottom: 1rem;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--text-color);
+      display: flex;
+      align-items: center;
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .nav-link i {
+      margin-right: 0.5rem;
+    }
+
+    .nav-link:hover {
+      background: var(--primary-color);
+      color: var(--white);
+    }
+
+    .nav-link.active {
+      background: var(--secondary-color);
+      color: var(--white);
+      font-weight: bold;
+    }
+
+    .main-content {
+      padding: 2rem;
+    }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .logo-header {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-header img {
+      height: 50px;
+      margin-right: 15px;
+      border-radius: 8px;
+    }
+
+    .user-welcome {
+      color: var(--text-color);
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .quick-actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .action-btn {
+      background: var(--primary-color);
+      color: var(--white);
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .action-btn i {
+      margin-right: 0.5rem;
+    }
+
+    .action-btn:hover {
+      background: var(--secondary-color);
+    }
+
+    .action-btn:active {
+      transform: scale(0.98);
+    }
+
+    iframe {
+      width: 100%;
+      height: 800px;
+      border: none;
+    }
+
+    @media (max-width: 768px) {
+      .dashboard-container {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        display: none;
+      }
+
+      .main-content {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-container">
+    <aside class="sidebar">
+      <a href='./index.html' class="logo">Recicle Fácil</a>
+      <nav>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="#" class="nav-link active">
+              <i class="fas fa-home"></i> Dashboard 1
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="./Dashboard2.html" class="nav-link">
+              <i class="fas fa-recycle"></i> Dashboard 2
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="./Dashboard3.html" class="nav-link">
+              <i class="fas fa-recycle"></i> Dashboard 3
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <div class="dashboard-header">
+        <div class="logo-header">
+          <img src="./imagem.jpg" alt="Logo Marca">
+          <h1 class="user-welcome">Bem-vindo(a)</h1>
+        </div>
+        <div class="quick-actions">
+          <a href="./residuos.html" class="action-btn">
+            <i class="fas fa-plus-circle"></i>Cadastrar Resíduos
+          </a>
+        </div>
+      </div>
+
+      <!-- Dashboard do Streamlit integrado aqui -->
+      <iframe src="http://localhost:8504"></iframe>
+    </main>
+  </div>
+
+  <script>
+    // Função para realçar a página ativa no menu
+    document.addEventListener('DOMContentLoaded', function () {
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        if (link.href === window.location.href) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
